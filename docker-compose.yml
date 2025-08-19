@@ -1,0 +1,24 @@
+services:
+  chroma:
+    image: ghcr.io/chroma-core/chroma:1.0.0
+    container_name: chroma-db
+    ports:
+      - "8000:8000"
+    volumes:
+      - chroma_data:/chroma/chroma
+    environment:
+      - CHROMA_SERVER_HOST=0.0.0.0
+      - CHROMA_SERVER_PORT=8000
+      - CHROMA_VERSION=1.0.0
+      - CHROMA_OPEN_TELEMETRY_ENABLED=false
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v2/heartbeat"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+
+volumes:
+  chroma_data:
+    driver: local
