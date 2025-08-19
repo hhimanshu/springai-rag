@@ -30,3 +30,14 @@ Learn to build robust RAG (Retrieval-Augmented Generation) applications using Sp
    ```bash
    mvn spring-boot:run
    ```
+
+## Running the Ingestor
+To ingest data into the application, use the provided script:
+```bash
+chmod +x scripts/ingest
+./scripts/ingest <number_of_records>
+```
+where `<number_of_records>` is the number of records you want to ingest into the application. If you leave it blank, the script will ingest all available records.
+
+ ## About Data
+ The CSV data is downloaded from [Kaggle](https://www.kaggle.com/datasets/juhibhojani/airline-reviews)
